@@ -4,7 +4,7 @@
 ;                                                               ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun C:PrintKnez ()
+(defun C:PrintViewports ()
       (setq m 0)                                                  ;First number
       (setq selectionSet (ssget "x" (list '(0 . "VIEWPORT"))))    ;selectionSet of Viewports
       (setq layoutNumber (sslength selectionSet))                 ;layoutNumber 
@@ -29,9 +29,9 @@
       "Yes"                                                       ;Detailed plot configuration? [Yes/No] <No>: No
       ""                                                          ;Enter a layout name or [?] <Layout1>:
       "DWG To PDF.pc3"                                            ;Enter an output device name or     
-      "ISO full bleed A3 (420.00 x 297.00 MM)"                                   ;Enter paper size or
+      "ISO full bleed A3 (420.00 x 297.00 MM)"                    ;Enter paper size - IF YOU WANT TO CHANGE PAPER SIZE, DO IT HERE!!!!
       "M"                                                         ;Enter paper units
-      "L"                                                         ;Enter drawing orientation
+      "L"                                                         ;Enter drawing orientation - IF YOU WANT TO CHANGE ORIENTATION TO PORTRAIT CHANGE "L" TO "P"
       "No"                                                        ;Plot upside down?
       "W"                                                         ;Enter plot area
       a                                                           ;Enter lower left corner of window
@@ -54,7 +54,8 @@
 (princ
     (strcat
         (menucmd "M=$(edtime,$(getvar,date),DDDD\",\" D MONTH YYYY)")
-        "\n Pozdrav"
-        "\n Ukucajte \"PrintKnez\" da ukljucite funkciju"
+        "\n HELLO - Pozdrav"
+        "\n Ukucajte \"PrintViewports\" da ukljucite funkciju"
+        "\n To open \"PrintViewports\" wrote in TERMINAL"
     )
 )
