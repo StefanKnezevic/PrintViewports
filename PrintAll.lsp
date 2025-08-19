@@ -9,6 +9,7 @@
       (setq selectionSet (ssget "x" (list '(0 . "VIEWPORT"))))    ;selectionSet of Viewports
       ; (setq layoutNumber (sslength selectionSet))                 ;layoutNumber 
       (setq n (getreal "\nHow many papers??? (format exemple:69):")) ;Number of Viewports - 2 for some reasons of AutoCAD (autoCAD give two more viewports in one .dwg file)
+      (setq gap (getreal "\nEnter gap between papers (0 if none): "))
       ; (setq imeFajla (getvar "DWGPREFIX"))                        
       (setq imeFajla (vl-filename-base (getvar "DWGNAME")))       ;Name of the file for pdf
       (setq PT1 (getpoint "\nPick Location of First Point: "))    ;First point
@@ -20,9 +21,9 @@
       (setq userLength (- PT2X PT1X))                             ;Length of the paper
       (setq userWidth (- PT2Y PT1Y))                              ;nigde se ne pominje, ali neka ostane za sada 
   (while (< m n)                                                  ;While start
-    (setq Ax (+ PT1X (* m userLength)))                           ;calculate first point of each layout
+    (setq Ax (+ PT1X (* m (+ userLength gap))))                           ;calculate first point of each layout
     (setq a (list Ax PT1Y))                                       ;coordinate of first point
-    (setq Bx (+ PT2X (* m userLength)))                           ;calculate first point of each layout
+    (setq Bx (+ PT2X (* m (+ userLength gap))))                           ;calculate first point of each layout
     (setq b (list Bx PT2Y))                                       ;coordinate of secound point
     (prin1 a)
     (prin1 b)
@@ -65,6 +66,7 @@
       ;(setq selectionSet (ssget "x" (list '(0 . "VIEWPORT"))))    ;selectionSet of Viewports
       ;(setq layoutNumber (sslength selectionSet))                 ;layoutNumber 
       (setq n (getreal "\nHow many papers??? (format exemple:69):")) ;Number of Viewports - 2 for some reasons of AutoCAD (autoCAD give two more viewports in one .dwg file)
+      (setq gap (getreal "\nEnter gap between papers (0 if none): "))
       ; (setq imeFajla (getvar "DWGPREFIX"))                       
       (setq imeFajla (vl-filename-base (getvar "DWGNAME")))       ;Name of the file for pdf
       (setq PT1 (getpoint "\nPick Location of First Point: "))    ;First point
@@ -76,9 +78,9 @@
       (setq userLength (- PT2X PT1X))                             ;Length of the paper
       (setq userWidth (- PT2Y PT1Y))                              ;nigde se ne pominje, ali neka ostane za sada 
   (while (< m n)                                                  ;While start
-    (setq Ax (+ PT1X (* m userLength)))                           ;calculate first point of each layout
+    (setq Ax (+ PT1X (* m (+ userLength gap))))                           ;calculate first point of each layout
     (setq a (list Ax PT1Y))                                       ;coordinate of first point
-    (setq Bx (+ PT2X (* m userLength)))                           ;calculate first point of each layout
+    (setq Bx (+ PT2X (* m (+ userLength gap))))                           ;calculate first point of each layout
     (setq b (list Bx PT2Y))                                       ;coordinate of secound point
     (prin1 a)
     (prin1 b)
@@ -86,9 +88,9 @@
       "Yes"                                                       ;Detailed plot configuration? [Yes/No] <No>: No
       ""                                                          ;Enter a layout name or [?] <Layout1>:
       "DWG To PDF.pc3"                                            ;Enter an output device name or     
-      "ISO full bleed A4 (210.00 x 297.00 MM)"                    ;Enter paper size - IF YOU WANT TO CHANGE PAPER SIZE, DO IT HERE!!!!
+      "ISO full bleed A3 (420.00 x 297.00 MM)"                    ;Enter paper size - IF YOU WANT TO CHANGE PAPER SIZE, DO IT HERE!!!!
       "M"                                                         ;Enter paper units
-      "P"                                                         ;Enter drawing orientation - IF YOU WANT TO CHANGE ORIENTATION TO PORTRAIT CHANGE "L" TO "P"
+      "L"                                                         ;Enter drawing orientation - IF YOU WANT TO CHANGE ORIENTATION TO PORTRAIT CHANGE "L" TO "P"
       "No"                                                        ;Plot upside down?
       "W"                                                         ;Enter plot area
       a                                                           ;Enter lower left corner of window
